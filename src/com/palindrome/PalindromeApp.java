@@ -16,7 +16,7 @@ public class PalindromeApp {
 
     private static boolean isPrime(long number) {
         return LongStream.rangeClosed(2, (long) Math.sqrt(number))
-                .noneMatch(n -> (number % n == 0));
+                .noneMatch(i -> (number % i == 0));
     }
 
     public static void main(String[] args) {

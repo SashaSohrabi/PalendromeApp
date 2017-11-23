@@ -1,5 +1,7 @@
 package com.palindrome;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.LongStream;
 
 public class PalindromeApp {
@@ -20,25 +22,36 @@ public class PalindromeApp {
     }
 
     public static void main(String[] args) {
-        long prime1, prime2;
+        long number, prime1, prime2;
         long maxPalindrome = 0;
         long multiplier1 = 0;
         long multiplier2 = 0;
+        List<Long> primeNumbersList = new ArrayList<Long>();
 
-        for (prime1 = 10000; prime1 <= 99999; prime1++) {
-            for (prime2 = prime1; prime2 <= 99999; prime2++) {
+        for (number = 10000; number <= 99999; number++) {
+            if (isPrime(number)) {
+                primeNumbersList.add(number);
+            }
+        }
 
-                if (isPrime(prime2) && isPrime(prime1)) {
-                    long palindromeCandidate = prime1 * prime2;
+        Long[] primeNumbers = primeNumbersList.toArray(new Long[primeNumbersList.size()]);
 
-                    if (isPalindrome(palindromeCandidate) && palindromeCandidate > maxPalindrome) {
-                        maxPalindrome = palindromeCandidate;
-                        multiplier1 = prime1;
-                        multiplier2 = prime2;
-                    }
+        for (int i = 0; i < primeNumbers.length; i++) {
+            for (int j = 0; j < primeNumbers.length; j++) {
+                prime1 = primeNumbers[i];
+                prime2 = primeNumbers[j];
+
+                long palindromeCandidate = prime1 * prime2;
+
+                if (isPalindrome(palindromeCandidate) && palindromeCandidate > maxPalindrome) {
+                    maxPalindrome = palindromeCandidate;
+                    multiplier1 = prime1;
+                    multiplier2 = prime2;
+
                 }
             }
         }
+
         System.out.println("the largest palindrome product of two prime five-digit numbers is: "
                 + maxPalindrome);
         System.out.println("prime-multiplier1: " + multiplier1);

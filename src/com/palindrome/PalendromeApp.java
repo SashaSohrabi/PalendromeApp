@@ -15,15 +15,12 @@ public class PalendromeApp {
         }
 
         return reversed == original;
-
-
     }
 
     private static boolean isPrime(long number) {
         return number > 2
                 && LongStream.rangeClosed(2, (long) Math.sqrt(number))
                 .noneMatch(n -> (number % n == 0));
-
     }
 
     public static void main(String[] args) {
@@ -33,8 +30,8 @@ public class PalendromeApp {
         long multiplier1 = 0;
         long multiplier2 = 0;
 
-        for (prime1 = 1000; prime1 <= 9999; prime1++) {
-            for (prime2 = 1000; prime2 <= 9999; prime2++) {
+        for (prime1 = 10000; prime1 <= 99999; prime1++) {
+            for (prime2 = 10000; prime2 <= 99999; prime2++) {
 
                 if (isPrime(prime2) && isPrime(prime1)) {
                     long palindromeCandidate = prime1 * prime2;
@@ -50,7 +47,6 @@ public class PalendromeApp {
             }
 
         }
-
 
         System.out.println("the largest palindrome product of two simple five-digit numbers is: "
                 + maxPalindrome);

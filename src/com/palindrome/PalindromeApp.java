@@ -21,25 +21,30 @@ public class PalindromeApp {
                 .noneMatch(i -> (number % i == 0));
     }
 
-    public static void main(String[] args) {
-        long number, prime1, prime2;
-        long maxPalindrome = 0;
-        long multiplier1 = 0;
-        long multiplier2 = 0;
-        List<Long> primeNumbersList = new ArrayList<Long>();
+    private static void printResults(long multiplier1, long multiplier2, long maxPalindrome) {
+        System.out.println("the largest palindrome product of two prime five-digit numbers is: "
+                + maxPalindrome);
+        System.out.println("prime-multiplier1: " + multiplier1);
+        System.out.println("prime-multiplier2: " + multiplier2);
+    }
 
-        for (number = 10000; number <= 99999; number++) {
-            if (isPrime(number)) {
-                primeNumbersList.add(number);
+    public static void main(String[] args) {
+        List<Integer> primeNumber = new ArrayList<>();
+
+        for (int i = 10000; i <= 99999; i++) {
+            if (isPrime(i)) {
+                primeNumber.add(i);
             }
         }
 
-        Long[] primeNumbers = primeNumbersList.toArray(new Long[primeNumbersList.size()]);
+        long maxPalindrome = 0;
+        long multiplier1 = 0;
+        long multiplier2 = 0;
 
-        for (int i = 0; i < primeNumbers.length; i++) {
-            for (int j = 0; j < primeNumbers.length; j++) {
-                prime1 = primeNumbers[i];
-                prime2 = primeNumbers[j];
+        for (int i = 0; i < primeNumber.size(); i++) {
+            for (int j = 0; j < primeNumber.size(); j++) {
+                long prime1 = primeNumber.get(i);
+                long prime2 = primeNumber.get(j);
 
                 long palindromeCandidate = prime1 * prime2;
 
@@ -51,10 +56,6 @@ public class PalindromeApp {
                 }
             }
         }
-
-        System.out.println("the largest palindrome product of two prime five-digit numbers is: "
-                + maxPalindrome);
-        System.out.println("prime-multiplier1: " + multiplier1);
-        System.out.println("prime-multiplier2: " + multiplier2);
+        printResults(multiplier1, multiplier2, maxPalindrome);
     }
 }
